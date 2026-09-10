@@ -1,0 +1,986 @@
+:root {
+  --background: #030914;
+  --surface: #071525;
+  --surface-light: #0b2035;
+  --border: rgba(103, 183, 234, 0.22);
+  --text: #f5f7fb;
+  --muted: #9aaabd;
+  --blue: #38bdf8;
+  --turquoise: #43e6cf;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-width: 320px;
+  background: var(--background);
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  overflow-x: hidden;
+  color: var(--text);
+  background: var(--background);
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img,
+svg {
+  display: block;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.site {
+  position: relative;
+  min-height: 100vh;
+  isolation: isolate;
+  overflow: hidden;
+  background:
+    radial-gradient(
+      circle at 78% 23%,
+      rgba(26, 134, 201, 0.15),
+      transparent 29rem
+    ),
+    radial-gradient(
+      circle at 65% 65%,
+      rgba(78, 54, 255, 0.07),
+      transparent 30rem
+    ),
+    var(--background);
+}
+
+/* MOUSE EFEKTİ */
+
+.cursorTrail {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: block;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* Gerçek mouse imlecini sadece bilgisayarda gizler */
+@media (hover: hover) and (pointer: fine) {
+  html,
+  body,
+  body * {
+    cursor: none !important;
+  }
+}
+
+/* NAVBAR */
+
+.navbar {
+  position: sticky;
+  top: 18px;
+  z-index: 100;
+
+  width: max-content;
+  max-width: calc(100% - 32px);
+  margin: 22px auto 0;
+  padding: 5px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: rgba(25, 37, 52, 0.88);
+  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.18);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.navbar nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+}
+
+.navbar nav a {
+  padding: 12px 20px;
+  border-radius: 999px;
+  color: #c1cad6;
+  font-size: 0.95rem;
+  white-space: nowrap;
+  transition:
+    color 0.2s ease,
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.navbar nav a:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.navbar nav a.active {
+  color: #ffffff;
+  background: #079cf2;
+  box-shadow: 0 8px 25px rgba(7, 156, 242, 0.25);
+}
+
+/* ORTAK SAYFA */
+
+.page {
+  position: relative;
+  z-index: 1;
+
+  width: min(1180px, calc(100% - 40px));
+  min-height: calc(100vh - 105px);
+  margin: 0 auto;
+  padding: 78px 0;
+}
+
+.contentPage {
+  min-height: auto;
+}
+
+.pageHeading {
+  max-width: 720px;
+  margin-bottom: 50px;
+}
+
+.pageHeading > span,
+.contactIntro > span {
+  display: block;
+  margin-bottom: 14px;
+  color: var(--turquoise);
+  font-family: monospace;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+}
+
+.pageHeading h1,
+.contactIntro h1 {
+  margin: 0;
+  font-size: clamp(1.85rem, 2.2vw, 2rem);
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+}
+
+.pageHeading > p,
+.contactIntro > p {
+  margin: 20px 0 0;
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+/* HOME */
+
+.homePage {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 380px;
+  align-items: center;
+  gap: 90px;
+}
+
+.homeIntro {
+  min-width: 0;
+  max-width: 700px;
+}
+
+.greeting {
+  margin: 0 0 12px;
+  color: var(--text);
+  font-size: 1.15rem;
+}
+
+.homeIntro h1 {
+  margin: 0;
+  color: #079cf2;
+  font-size: clamp(1.85rem, 2.2vw, 2rem);
+  line-height: 1.07;
+  letter-spacing: -0.045em;
+  overflow-wrap: break-word;
+}
+
+.homeIntro h2 {
+  margin: 16px 0 0;
+  font-size: clamp(1.35rem, 2vw, 1.75rem);
+  line-height: 1.3;
+}
+
+.introText {
+  max-width: 680px;
+  margin: 27px 0 0;
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+.socialLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 30px;
+}
+
+.socialLinks a {
+  width: 48px;
+  height: 48px;
+
+  display: grid;
+  place-items: center;
+
+  border: 1px solid var(--border);
+  border-radius: 13px;
+  color: var(--text);
+  background: rgba(8, 24, 41, 0.72);
+  font-size: 1.65rem;
+
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.socialLinks a:hover {
+  color: var(--turquoise);
+  border-color: var(--blue);
+  transform: translateY(-3px);
+}
+
+.developerCard {
+  width: 100%;
+  max-width: 380px;
+  padding: 36px 26px;
+  justify-self: center;
+  text-align: center;
+
+  border: 1px solid var(--border);
+  border-radius: 28px;
+  background:
+    linear-gradient(
+      145deg,
+      rgba(11, 32, 53, 0.96),
+      rgba(7, 21, 37, 0.94)
+    );
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.2);
+}
+
+.photoPlaceholder {
+  width: 158px;
+  height: 158px;
+  margin: 0 auto 26px;
+
+  display: grid;
+  place-items: center;
+
+  border: 6px solid #dff5ff;
+  border-radius: 50%;
+  color: #02141b;
+  background: linear-gradient(135deg, var(--blue), var(--turquoise));
+  font-size: 2.7rem;
+  font-weight: 900;
+}
+
+.developerInfo h3 {
+  margin: 0;
+  font-size: 1.3rem;
+  line-height: 1.3;
+}
+
+.developerInfo p {
+  margin: 10px 0;
+  color: var(--blue);
+  font-size: 1rem;
+}
+
+.developerInfo span {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+/* ABOUT */
+
+.aboutGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 54px 75px;
+}
+
+.contentCard {
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+.contentCard h2 {
+  margin: 0;
+  font-size: 1.45rem;
+  line-height: 1.3;
+}
+
+.contentCard h3 {
+  margin: 8px 0;
+}
+
+.contentCard p,
+.contentCard li {
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+.contentCard p {
+  margin: 18px 0 0;
+}
+
+.contentCard ul {
+  margin: 18px 0 0;
+  padding-left: 20px;
+}
+
+.educationCard {
+  grid-column: 1 / -1;
+}
+
+.cardLabel {
+  margin: 0 0 10px !important;
+  color: var(--blue) !important;
+  font-family: monospace;
+  font-size: 0.76rem !important;
+  letter-spacing: 0.08em;
+}
+
+/* PROJECTS */
+
+.projectGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.projectItem {
+  min-width: 0;
+  min-height: 340px;
+  padding: 27px;
+
+  display: flex;
+  flex-direction: column;
+
+  border: 1px solid var(--border);
+  border-radius: 21px;
+  background: rgba(8, 24, 41, 0.72);
+
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.projectItem:hover {
+  border-color: rgba(56, 189, 248, 0.46);
+  transform: translateY(-4px);
+}
+
+.projectItem h2 {
+  margin: 0;
+  font-size: 1.3rem;
+  line-height: 1.3;
+}
+
+.projectItem > p:not(.cardLabel) {
+  margin: 18px 0 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.7;
+}
+
+.technologyList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.technologyList span {
+  padding: 7px 10px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: #aec2d6;
+  background: rgba(255, 255, 255, 0.025);
+  font-family: monospace;
+  font-size: 0.72rem;
+}
+
+.projectItem > a,
+.projectItem > strong {
+  margin-top: auto;
+  padding-top: 25px;
+  color: var(--blue);
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+/* SKILLS */
+
+.skillSection {
+  padding: 0 0 38px;
+}
+
+.skillSection + .skillSection {
+  padding-top: 34px;
+  border-top: 1px solid rgba(103, 183, 234, 0.16);
+}
+
+.skillSection h2 {
+  margin: 0 0 32px;
+  font-size: 1.4rem;
+  line-height: 1.3;
+}
+
+.technologyIcons {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(100px, 1fr));
+  align-items: start;
+  gap: 34px 25px;
+}
+
+.technologyIcon {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 13px;
+
+  color: var(--muted);
+  text-align: center;
+
+  transition:
+    transform 0.2s ease,
+    color 0.2s ease;
+}
+
+.technologyIcon:hover {
+  transform: translateY(-5px);
+}
+
+.technologyIcon svg {
+  width: 56px;
+  height: 56px;
+  flex-shrink: 0;
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.2));
+}
+
+.technologyIcon span {
+  display: block;
+  max-width: 120px;
+  color: var(--muted);
+  font-size: 0.91rem;
+  line-height: 1.25;
+  overflow-wrap: break-word;
+}
+
+/* BACKEND RENKLERİ */
+
+.skillSection:nth-of-type(1)
+  .technologyIcon:nth-child(1)
+  svg {
+  color: #f89820;
+}
+
+.skillSection:nth-of-type(1)
+  .technologyIcon:nth-child(2)
+  svg {
+  color: #6db33f;
+}
+
+.skillSection:nth-of-type(1)
+  .technologyIcon:nth-child(3)
+  svg {
+  color: #5b9cff;
+}
+
+.skillSection:nth-of-type(1)
+  .technologyIcon:nth-child(4)
+  svg {
+  color: #d4b45f;
+}
+
+.skillSection:nth-of-type(1)
+  .technologyIcon:nth-child(5)
+  svg {
+  color: #43e6cf;
+}
+
+/* FRONTEND RENKLERİ */
+
+.skillSection:nth-of-type(2)
+  .technologyIcon:nth-child(1)
+  svg {
+  color: #61dafb;
+}
+
+.skillSection:nth-of-type(2)
+  .technologyIcon:nth-child(2)
+  svg {
+  color: #3178c6;
+}
+
+.skillSection:nth-of-type(2)
+  .technologyIcon:nth-child(3)
+  svg {
+  color: #f7df1e;
+}
+
+.skillSection:nth-of-type(2)
+  .technologyIcon:nth-child(4)
+  svg {
+  color: #e34f26;
+}
+
+.skillSection:nth-of-type(2)
+  .technologyIcon:nth-child(5)
+  svg {
+  color: #1572b6;
+}
+
+/* DEVOPS RENKLERİ */
+
+.skillSection:nth-of-type(3)
+  .technologyIcon:nth-child(1)
+  svg {
+  color: #2496ed;
+}
+
+.skillSection:nth-of-type(3)
+  .technologyIcon:nth-child(2)
+  svg {
+  color: #f05032;
+}
+
+.skillSection:nth-of-type(3)
+  .technologyIcon:nth-child(3)
+  svg {
+  color: #ffffff;
+}
+
+.skillSection:nth-of-type(3)
+  .technologyIcon:nth-child(4)
+  svg {
+  color: #3776ab;
+}
+
+.skillSection:nth-of-type(3)
+  .technologyIcon:nth-child(5)
+  svg {
+  color: #ffffff;
+}
+
+.skillSection:nth-of-type(3)
+  .technologyIcon:nth-child(6)
+  svg {
+  color: #326ce5;
+}
+
+.skillSection:nth-of-type(3)
+  .technologyIcon:nth-child(7)
+  svg {
+  color: #2088ff;
+}
+
+/* KÜÇÜK MASAÜSTÜ */
+
+@media (max-width: 1100px) {
+  .page {
+    width: min(960px, calc(100% - 40px));
+  }
+
+  .navbar nav a {
+    padding: 11px 18px;
+  }
+
+  .homePage {
+    grid-template-columns: minmax(0, 1fr) 330px;
+    gap: 55px;
+  }
+
+  .projectGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .technologyIcons {
+    grid-template-columns: repeat(5, minmax(85px, 1fr));
+  }
+}
+
+/* TABLET */
+
+@media (max-width: 900px) {
+  .navbar {
+    top: 12px;
+    margin-top: 16px;
+  }
+
+  .navbar nav a {
+    padding: 10px 17px;
+    font-size: 0.9rem;
+  }
+
+  .page {
+    width: min(720px, calc(100% - 36px));
+    min-height: auto;
+    padding: 60px 0;
+  }
+
+  .pageHeading {
+    margin-bottom: 42px;
+  }
+
+  .pageHeading h1,
+  .contactIntro h1 {
+    font-size: 1.9rem;
+  }
+
+  .homePage {
+    grid-template-columns: 1fr;
+    gap: 45px;
+  }
+
+  .developerCard {
+    grid-row: 1;
+    width: 320px;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 29px 23px;
+    justify-self: center;
+  }
+
+  .homeIntro {
+    grid-row: 2;
+    width: 100%;
+    max-width: 650px;
+    margin: 0 auto;
+  }
+
+  .photoPlaceholder {
+    width: 135px;
+    height: 135px;
+    font-size: 2.3rem;
+  }
+
+  .homeIntro h1 {
+    font-size: 1.9rem;
+  }
+
+  .aboutGrid {
+    grid-template-columns: 1fr;
+    gap: 42px;
+  }
+
+  .educationCard {
+    grid-column: auto;
+  }
+
+  .projectGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .technologyIcons {
+    grid-template-columns: repeat(5, minmax(80px, 1fr));
+    gap: 32px 16px;
+  }
+
+  .technologyIcon svg {
+    width: 51px;
+    height: 51px;
+  }
+}
+
+/* TELEFON */
+
+@media (max-width: 680px) {
+  .navbar {
+    top: 8px;
+    width: max-content;
+    max-width: calc(100% - 20px);
+    margin-top: 10px;
+    padding: 4px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .navbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .navbar nav {
+    gap: 1px;
+  }
+
+  .navbar nav a {
+    padding: 9px 13px;
+    font-size: 0.8rem;
+  }
+
+  .page {
+    width: calc(100% - 32px);
+    padding: 46px 0 58px;
+  }
+
+  .pageHeading {
+    margin-bottom: 38px;
+  }
+
+  .pageHeading > span {
+    font-size: 0.7rem;
+  }
+
+  .pageHeading h1,
+  .contactIntro h1 {
+    font-size: 1.65rem;
+    line-height: 1.13;
+  }
+
+  .pageHeading > p {
+    margin-top: 16px;
+    font-size: 0.91rem;
+    line-height: 1.65;
+  }
+
+  .homePage {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 40px;
+  }
+
+  .developerCard {
+    order: -1;
+    align-self: center;
+    width: 280px;
+    max-width: calc(100vw - 54px);
+    margin: 0 auto;
+    padding: 26px 20px;
+  }
+
+  .photoPlaceholder {
+    width: 124px;
+    height: 124px;
+    border-width: 5px;
+    font-size: 2.15rem;
+  }
+
+  .developerInfo h3 {
+    font-size: 1.06rem;
+  }
+
+  .developerInfo p {
+    font-size: 0.88rem;
+  }
+
+  .developerInfo span {
+    font-size: 0.82rem;
+  }
+
+  .greeting {
+    font-size: 0.95rem;
+  }
+
+  .homeIntro h1 {
+    font-size: 1.65rem;
+  }
+
+  .homeIntro h2 {
+    font-size: clamp(1.25rem, 6.5vw, 1.55rem);
+  }
+
+  .introText {
+    margin-top: 22px;
+    font-size: 0.91rem;
+    line-height: 1.68;
+  }
+
+  .socialLinks a {
+    width: 45px;
+    height: 45px;
+    font-size: 1.5rem;
+  }
+
+  .aboutGrid {
+    gap: 38px;
+  }
+
+  .contentCard h2 {
+    font-size: 1.25rem;
+  }
+
+  .contentCard p,
+  .contentCard li {
+    font-size: 0.91rem;
+    line-height: 1.68;
+  }
+
+  .projectGrid {
+    width: calc(100% - 12px);
+    margin: 0 auto;
+    gap: 15px;
+  }
+
+  .projectItem {
+    min-height: 0;
+    padding: 22px;
+  }
+
+  .projectItem h2 {
+    font-size: 1.18rem;
+  }
+
+  .projectItem > p:not(.cardLabel) {
+    font-size: 0.87rem;
+  }
+
+  .skillSection h2 {
+    margin-bottom: 28px;
+    font-size: 1.26rem;
+  }
+
+  .technologyIcons {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 34px 13px;
+  }
+
+  .technologyIcon svg {
+    width: 47px;
+    height: 47px;
+  }
+
+  .technologyIcon span {
+    max-width: 95px;
+    font-size: 0.78rem;
+  }
+}
+
+/* ÇOK KÜÇÜK TELEFON */
+
+@media (max-width: 390px) {
+  .navbar {
+    max-width: calc(100% - 14px);
+  }
+
+  .navbar nav a {
+    padding: 8px 10px;
+    font-size: 0.74rem;
+  }
+
+  .page {
+    width: calc(100% - 26px);
+    padding-top: 40px;
+  }
+
+  .developerCard {
+    width: 270px;
+    max-width: calc(100vw - 42px);
+    padding: 24px 17px;
+  }
+
+  .homeIntro h1 {
+    font-size: 1.55rem;
+  }
+
+  .homeIntro h2 {
+    font-size: 1.25rem;
+  }
+
+  .pageHeading h1,
+  .contactIntro h1 {
+    font-size: 1.55rem;
+  }
+
+  .projectGrid {
+    width: calc(100% - 8px);
+  }
+
+  .projectItem {
+    padding: 20px;
+  }
+
+  .technologyIcons {
+    gap: 30px 9px;
+  }
+
+  .technologyIcon svg {
+    width: 43px;
+    height: 43px;
+  }
+
+  .technologyIcon span {
+    font-size: 0.73rem;
+  }
+}
+
+/* TELEFON VE TABLET */
+
+@media (hover: none), (pointer: coarse) {
+  html,
+  body,
+  body * {
+    cursor: auto !important;
+  }
+
+  .cursorTrail {
+    display: none !important;
+  }
+}
+
+/* HAREKET HASSASİYETİ */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+
+  .cursorTrail {
+    display: none !important;
+  }
+}
+
+/* FOOTER */
+
+.footer {
+  position: relative;
+  z-index: 1;
+  width: min(1180px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 24px 0;
+  border-top: 1px solid var(--border);
+  text-align: center;
+}
+
+.footer p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
