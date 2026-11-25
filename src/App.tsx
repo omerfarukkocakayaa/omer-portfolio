@@ -1,6 +1,8 @@
 import { HashRouter, Route, Routes } from "react-router-dom";
 import CursorTrail from "./components/CursorTrail";
 import Navbar from "./components/Navbar";
+import { t } from "./i18n";
+import Contact from "./pages/Contact";
 import About from "./pages/About";
 import Home from "./pages/Home";
 import Projects from "./pages/Projects";
@@ -20,11 +22,12 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/projects" element={<Projects />} />
           <Route path="/skills" element={<Skills />} />
+          <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<Home />} />
         </Routes>
 
         <footer className="footer">
-          <p>© 2026 Ömer Faruk Kocakaya. All rights reserved.</p>
+          <p>© 2026 Ömer Faruk Kocakaya. {t("All rights reserved.")}</p>
         </footer>
       </div>
     </HashRouter>

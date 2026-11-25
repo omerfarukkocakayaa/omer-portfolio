@@ -1,3 +1,4 @@
+import { t } from "../i18n";
 const contactLinks = [
   {
     label: "Email",
@@ -20,13 +21,10 @@ function Contact() {
   return (
     <main className="page contactPage">
       <section className="contactIntro">
-        <span>CONTACT</span>
-        <h1>Let&apos;s build something meaningful.</h1>
+        <span>{t("CONTACT")}</span>
+        <h1>{t("Let's build something meaningful.")}</h1>
 
-        <p>
-          I am interested in junior software development opportunities,
-          collaborative projects and backend-focused roles.
-        </p>
+        <p>{t("I am interested in junior software development opportunities, collaborative projects and backend-focused roles.")}</p>
       </section>
 
       <section className="contactLinks">
@@ -35,11 +33,11 @@ function Contact() {
             className="contactItem"
             href={contact.link}
             target={contact.label === "Email" ? undefined : "_blank"}
-            rel={contact.label === "Email" ? undefined : "noreferrer"}
-            key={contact.label}
+            rel={contact.label === "Email" ? undefined : "noopener noreferrer"}
+            key={t(contact.label)}
           >
             <div>
-              <span>{contact.label}</span>
+              <span>{t(contact.label)}</span>
               <strong>{contact.value}</strong>
             </div>
 
